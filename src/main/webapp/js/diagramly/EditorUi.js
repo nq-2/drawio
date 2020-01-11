@@ -11696,6 +11696,10 @@
 						this.handleRemoteInvokeResponse(data);
 						return;
 					}
+					else if (data.action == 'test') {
+						console.log("draw.io says test");
+						return;
+					}
 					else
 					{
 						// Unknown message must stop execution
