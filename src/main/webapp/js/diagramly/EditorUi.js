@@ -11697,7 +11697,7 @@
 						return;
 					}
 					else if (data.action == 'test') {
-						console.log("draw.io says test");
+						parent.postMessage(JSON.stringify({ error: 'draw.io says test', data: JSON.stringify(data)}), '*');
 						return;
 					}
 					else
