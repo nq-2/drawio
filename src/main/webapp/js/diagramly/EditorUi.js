@@ -11697,13 +11697,15 @@
 						return;
 					}
 					else if (data.action == 'test') {
-						parent.postMessage(JSON.stringify({ error: 'draw.io says test', data: JSON.stringify(data) }), '*');
+						parent.postMessage(JSON.stringify({ error: 'draw.io says test 2', data: JSON.stringify(data) }), '*');
 						
-						var graph = this.editorUi.editor.graph;
+						//var graph = this.editorUi.editor.graph; // cannot read property editor of undefined
+						var graph = this.editor.graph;
+
 						var isGraphEnabled = mxUtils.bind(graph, graph.isEnabled);
 						var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_WEST);
 
-						this.editorUi.executeLayout(function () {
+						this.executeLayout(function () {
 							var selectionCells = graph.getSelectionCells();
 							layout.execute(graph.getDefaultParent(), selectionCells.length == 0 ? null : selectionCells);
 						}, true);
