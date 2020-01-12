@@ -11680,17 +11680,6 @@
 						{
 							data = data.xml;
 						}
-
-						if (urlParams['formatOnLoad'] == '1') {
-							//var graph = this.editorUi.editor.graph; // cannot read property editor of undefined
-							var graph = this.editor.graph;
-							var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_WEST);
-
-							this.executeLayout(function () {
-								var selectionCells = graph.getSelectionCells();
-								layout.execute(graph.getDefaultParent(), selectionCells.length == 0 ? null : selectionCells);
-							}, true);
-						}
 					}
 					else if (data.action == 'remoteInvokeReady') 
 					{
@@ -11707,15 +11696,53 @@
 						this.handleRemoteInvokeResponse(data);
 						return;
 					}
+					else if (data.action == 'layout') {
+
+						var graph = this.editor.graph;
+						var style = data.style;
+
+						if (style == 'horizontalFlow') {
+							var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_WEST);
+
+							this.executeLayout(function () {
+								var selectionCells = graph.getSelectionCells();
+								layout.execute(graph.getDefaultParent(), selectionCells.length == 0 ? null : selectionCells);
+							}, true);
+						}
+						else if (style == 'verticalFlow') {
+							var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_NORTH);
+
+							this.editorUi.executeLayout(function () {
+								var selectionCells = graph.getSelectionCells();
+								layout.execute(graph.getDefaultParent(), selectionCells.length == 0 ? null : selectionCells);
+							}, true);
+						}
+						else if (style == 'circle') {
+							var layout = new mxCircleLayout(graph);
+
+							this.editorUi.executeLayout(function () {
+								var tmp = graph.getSelectionCell();
+
+								if (tmp == null || graph.getModel().getChildCount(tmp) == 0) {
+									tmp = graph.getDefaultParent();
+								}
+
+								layout.execute(tmp);
+
+								if (graph.getModel().isVertex(tmp)) {
+									graph.updateGroupBounds([tmp], graph.gridSize * 2, true);
+								}
+							}, true);
+						}
+					}
 					else if (data.action == 'test') {
-						parent.postMessage(JSON.stringify({ error: 'draw.io says test 3', data: JSON.stringify(data) }), '*');
+						parent.postMessage(JSON.stringify({ error: 'draw.io says test 4', data: JSON.stringify(data) }), '*');
 						return;
 					}
 					else
 					{
 						// Unknown message must stop execution
 						parent.postMessage(JSON.stringify({error: 'unknownMessage', data: JSON.stringify(data)}), '*');
-						
 						return;
 					}
 				}
