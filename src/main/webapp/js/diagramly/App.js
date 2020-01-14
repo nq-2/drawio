@@ -1965,7 +1965,9 @@ App.prototype.onBeforeUnload = function()
 {
 	if (urlParams['embed'] == '1' && this.editor.modified)
 	{
-		return mxResources.get('allChangesLost');
+		if (!(urlParams['noWarn'] == '1')) {
+			return mxResources.get('allChangesLost');
+		}
 	}
 	else
 	{

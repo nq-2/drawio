@@ -11739,7 +11739,7 @@
 						return;
 					}
 					else if (data.action == 'test') {
-						parent.postMessage(JSON.stringify({ error: 'draw.io says test 5', data: JSON.stringify(data) }), '*');
+						parent.postMessage(JSON.stringify({ error: 'draw.io says test 6', data: JSON.stringify(data) }), '*');
 						return;
 					}
 					else
