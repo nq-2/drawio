@@ -11680,6 +11680,8 @@
 						{
 							data = data.xml;
 						}
+						// Start in FullScreen mode by default
+						this.fullscreenElement.click();
 					}
 					else if (data.action == 'remoteInvokeReady') 
 					{
@@ -11739,12 +11741,7 @@
 						return;
 					}
 					else if (data.action == 'test') {
-						parent.postMessage(JSON.stringify({ error: 'draw.io says test 6', data: JSON.stringify(data) }), '*');
-						console.log(this.fullscreenElement);
-						this.fullscreenElement.click();
-						// var graph = this.editor.graph;
-						// graph.fireEvent(new mxEventObject('layout'));
-						
+						parent.postMessage(JSON.stringify({ error: 'draw.io says test 7', data: JSON.stringify(data) }), '*');
 						return;
 					}
 					else
