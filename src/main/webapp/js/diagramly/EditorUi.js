@@ -11716,6 +11716,9 @@
 								var selectionCells = graph.getSelectionCells();
 								layout.execute(graph.getDefaultParent(), selectionCells.length == 0 ? null : selectionCells);
 							}, true);
+
+							graph.fireEvent(new mxEventObject('layout'));
+
 						}
 						else if (style == 'circle') {
 							var layout = new mxCircleLayout(graph);
