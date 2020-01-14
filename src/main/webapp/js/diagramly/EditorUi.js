@@ -11741,6 +11741,7 @@
 						return;
 					}
 					else if (data.action == 'test') {
+						this.editor.graph.center();
 						parent.postMessage(JSON.stringify({ error: 'draw.io says test 7', data: JSON.stringify(data) }), '*');
 						return;
 					}
