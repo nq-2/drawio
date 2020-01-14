@@ -11751,6 +11751,7 @@
 							// If passed an Id, then center on that id
 							graph.scrollCellToVisible(graph.model.getCell(id), true);
 						}
+						return;
 					}
 					else if (data.action == 'test') {
 						parent.postMessage(JSON.stringify({ error: 'draw.io says test 8', data: JSON.stringify(data) }), '*');
