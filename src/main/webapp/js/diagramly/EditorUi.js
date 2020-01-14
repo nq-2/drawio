@@ -11708,7 +11708,6 @@
 								var selectionCells = graph.getSelectionCells();
 								layout.execute(graph.getDefaultParent(), selectionCells.length == 0 ? null : selectionCells);
 							}, true);
-							graph.fireEvent(new mxEventObject('layout'));
 						}
 						else if (style == 'verticalFlow') {
 							var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_NORTH);
@@ -11741,6 +11740,10 @@
 					}
 					else if (data.action == 'test') {
 						parent.postMessage(JSON.stringify({ error: 'draw.io says test 6', data: JSON.stringify(data) }), '*');
+						
+						var graph = this.editor.graph;
+						graph.fireEvent(new mxEventObject('layout'));
+						
 						return;
 					}
 					else
