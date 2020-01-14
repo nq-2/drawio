@@ -1965,7 +1965,8 @@ App.prototype.onBeforeUnload = function()
 {
 	if (urlParams['embed'] == '1' && this.editor.modified)
 	{
-		if (!(urlParams['noWarn'] == '1')) {
+		// Don't add the onBeforeUnload event for embed=1 && nowarn=1
+		if (!(urlParams['nowarn'] == '1')) {
 			return mxResources.get('allChangesLost');
 		}
 	}
