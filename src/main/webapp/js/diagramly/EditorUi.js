@@ -11743,7 +11743,7 @@
 					else if (data.action == 'test') {
 						// this.editor.graph.center();
 						var graph = this.editor.graph;
-						graph.scrollCellToVisible(graph.model.getCell('3901'));
+						graph.scrollCellToVisible(graph.model.getCell('3901'), true);
 
 						parent.postMessage(JSON.stringify({ error: 'draw.io says test 7', data: JSON.stringify(data) }), '*');
 						return;
