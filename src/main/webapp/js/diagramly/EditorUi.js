@@ -11740,9 +11740,10 @@
 					}
 					else if (data.action == 'test') {
 						parent.postMessage(JSON.stringify({ error: 'draw.io says test 6', data: JSON.stringify(data) }), '*');
-						
-						var graph = this.editor.graph;
-						graph.fireEvent(new mxEventObject('layout'));
+						console.log(this.fullscreenElement);
+						this.fullscreenElement.click();
+						// var graph = this.editor.graph;
+						// graph.fireEvent(new mxEventObject('layout'));
 						
 						return;
 					}
