@@ -11740,12 +11740,20 @@
 						}
 						return;
 					}
-					else if (data.action == 'test') {
-						// this.editor.graph.center();
+					else if (data.action == 'center') {
 						var graph = this.editor.graph;
-						graph.scrollCellToVisible(graph.model.getCell('3901'), true);
+						var id = data.id;
 
-						parent.postMessage(JSON.stringify({ error: 'draw.io says test 7', data: JSON.stringify(data) }), '*');
+						if (id == null) {
+							// Default is basic centering
+							graph.center();
+						} else {
+							// If passed an Id, then center on that id
+							graph.scrollCellToVisible(graph.model.getCell(id), true);
+						}
+					}
+					else if (data.action == 'test') {
+						parent.postMessage(JSON.stringify({ error: 'draw.io says test 8', data: JSON.stringify(data) }), '*');
 						return;
 					}
 					else
