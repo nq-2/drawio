@@ -1,4 +1,4 @@
-if (urlParams['dev'] == '1')
+if (urlParams['dev'] == '1' && urlParams['showdevtooltips'] == '1')
 {
 	(function()
 	{
