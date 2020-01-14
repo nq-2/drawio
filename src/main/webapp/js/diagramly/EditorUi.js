@@ -11708,22 +11708,20 @@
 								var selectionCells = graph.getSelectionCells();
 								layout.execute(graph.getDefaultParent(), selectionCells.length == 0 ? null : selectionCells);
 							}, true);
+							graph.fireEvent(new mxEventObject('layout'));
 						}
 						else if (style == 'verticalFlow') {
 							var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_NORTH);
 
-							this.editorUi.executeLayout(function () {
+							this.executeLayout(function () {
 								var selectionCells = graph.getSelectionCells();
 								layout.execute(graph.getDefaultParent(), selectionCells.length == 0 ? null : selectionCells);
 							}, true);
-
-							graph.fireEvent(new mxEventObject('layout'));
-
 						}
 						else if (style == 'circle') {
 							var layout = new mxCircleLayout(graph);
 
-							this.editorUi.executeLayout(function () {
+							this.executeLayout(function () {
 								var tmp = graph.getSelectionCell();
 
 								if (tmp == null || graph.getModel().getChildCount(tmp) == 0) {
