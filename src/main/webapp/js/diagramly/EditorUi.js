@@ -11733,10 +11733,13 @@
 									graph.updateGroupBounds([tmp], graph.gridSize * 2, true);
 								}
 							}, true);
+						} else {
+							parent.postMessage(JSON.stringify({ error: 'unknownStyle', data: JSON.stringify(data) }), '*');
 						}
+						return;
 					}
 					else if (data.action == 'test') {
-						parent.postMessage(JSON.stringify({ error: 'draw.io says test 4', data: JSON.stringify(data) }), '*');
+						parent.postMessage(JSON.stringify({ error: 'draw.io says test 5', data: JSON.stringify(data) }), '*');
 						return;
 					}
 					else
