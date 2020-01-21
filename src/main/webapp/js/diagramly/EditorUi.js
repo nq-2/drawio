@@ -11703,10 +11703,10 @@
 						var graph = this.editor.graph;
 						var style = data.style;
 
-						// // Function to call after executing layout
-						// var postFunction = function () {
-						// 	parent.postMessage(JSON.stringify({event: 'layout', style: style}), '*');
-						// };
+						// Function to call after executing layout
+						var postFunction = function () {
+							parent.postMessage(JSON.stringify({event: 'layout', style: style}), '*');
+						};
 
 						if (style == 'horizontalFlow') {
 							var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_WEST);
@@ -11714,7 +11714,7 @@
 							this.executeLayout(function () {
 								var selectionCells = graph.getSelectionCells();
 								layout.execute(graph.getDefaultParent(), selectionCells.length == 0 ? null : selectionCells);
-							}, true);
+							}, true, postFunction);
 						}
 						else if (style == 'verticalFlow') {
 							var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_NORTH);
