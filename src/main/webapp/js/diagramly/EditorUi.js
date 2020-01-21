@@ -11702,15 +11702,11 @@
 
 						var graph = this.editor.graph;
 						var style = data.style;
-						var actions = this.actions;
 
-						// Function to call after executing layout
-						var postFunction = function () {
-							actions.get('fitWindow').funct(); // Default is fitWindow
-							graph.zoomTo(1); // And apply the default zoom
-							// postMessage back once layout is complete
-							parent.postMessage(JSON.stringify({event: 'layout', style: style}), '*');
-						};
+						// // Function to call after executing layout
+						// var postFunction = function () {
+						// 	parent.postMessage(JSON.stringify({event: 'layout', style: style}), '*');
+						// };
 
 						if (style == 'horizontalFlow') {
 							var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_WEST);
@@ -11718,7 +11714,7 @@
 							this.executeLayout(function () {
 								var selectionCells = graph.getSelectionCells();
 								layout.execute(graph.getDefaultParent(), selectionCells.length == 0 ? null : selectionCells);
-							}, true, postFunction);
+							}, true);
 						}
 						else if (style == 'verticalFlow') {
 							var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_NORTH);
