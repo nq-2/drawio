@@ -11702,12 +11702,13 @@
 
 						var graph = this.editor.graph;
 						var style = data.style;
+						var actions = this.actions;
 
 						// Function to call after executing layout
 						var centerGraph = function () {
-							this.actions.get('fitWindow').funct(); // Default is fitWindow
+							actions.get('fitWindow').funct(); // Default is fitWindow
 							graph.zoomTo(1); // And apply the default zoom
-						}
+						};
 
 						if (style == 'horizontalFlow') {
 							var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_WEST);
