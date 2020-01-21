@@ -11705,9 +11705,11 @@
 						var actions = this.actions;
 
 						// Function to call after executing layout
-						var centerGraph = function () {
+						var postFunction = function () {
 							actions.get('fitWindow').funct(); // Default is fitWindow
 							graph.zoomTo(1); // And apply the default zoom
+							// postMessage back once layout is complete
+							parent.postMessage(JSON.stringify({event: 'layout', style: style}), '*');
 						};
 
 						if (style == 'horizontalFlow') {
@@ -11716,7 +11718,7 @@
 							this.executeLayout(function () {
 								var selectionCells = graph.getSelectionCells();
 								layout.execute(graph.getDefaultParent(), selectionCells.length == 0 ? null : selectionCells);
-							}, true, centerGraph);
+							}, true, postFunction);
 						}
 						else if (style == 'verticalFlow') {
 							var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_NORTH);
