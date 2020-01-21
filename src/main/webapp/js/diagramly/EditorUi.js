@@ -11745,8 +11745,9 @@
 						var id = data.id;
 
 						if (id == null) {
-							// Default is basic centering
-							graph.center();
+							// TODO: 'unzooming' after applying fitWindow is probably a performance problem
+							this.actions.get('fitWindow').funct(); // Default is fitWindow
+							graph.zoomTo(1); // And apply the default zoom
 						} else {
 							// If passed an Id, then center on that id
 							graph.scrollCellToVisible(graph.model.getCell(id), true);
