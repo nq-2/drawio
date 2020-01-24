@@ -11708,7 +11708,7 @@
 							parent.postMessage(JSON.stringify({event: 'layout', style: style}), '*');
 						};
 
-						if (style == 'horizontalFlow') {
+						if (style === 'horizontalFlow') {
 							var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_WEST);
 
 							this.executeLayout(function () {
@@ -11716,7 +11716,7 @@
 								layout.execute(graph.getDefaultParent(), selectionCells.length == 0 ? null : selectionCells);
 							}, true, postFunction);
 						}
-						else if (style == 'verticalFlow') {
+						else if (style === 'verticalFlow') {
 							var layout = new mxHierarchicalLayout(graph, mxConstants.DIRECTION_NORTH);
 
 							this.executeLayout(function () {
@@ -11724,7 +11724,7 @@
 								layout.execute(graph.getDefaultParent(), selectionCells.length == 0 ? null : selectionCells);
 							}, true);
 						}
-						else if (style == 'circle') {
+						else if (style === 'circle') {
 							var layout = new mxCircleLayout(graph);
 
 							this.executeLayout(function () {
@@ -11740,7 +11740,15 @@
 									graph.updateGroupBounds([tmp], graph.gridSize * 2, true);
 								}
 							}, true);
-						} else {
+						}
+						else if (style === 'custom') {
+							let editorUi = this.actions.editorUi;
+							let layoutList = JSON.parse(data.config);
+							
+							editorUi.executeLayoutList(layoutList)
+							editorUi.customLayoutConfig = layoutList;
+						}						
+						else {
 							parent.postMessage(JSON.stringify({ error: 'unknownStyle', data: JSON.stringify(data) }), '*');
 						}
 						return;
